@@ -1,0 +1,146 @@
+/* frontend/assets/css/styles.css */
+
+/* --- Base & Typography --- */
+body {
+    font-family: 'Poppins', sans-serif; /* A clean, modern font */
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    color: #0d2c54; /* Dark blue from logo */
+}
+
+/* --- Theme Colors --- */
+:root {
+    --primary-color: #2a6fdb; /* Main blue from logo */
+    --secondary-color: #0d2c54; /* Dark blue */
+    --accent-color: #e9ecef; /* Light grey for backgrounds */
+    --text-color: #343a40;
+    --white-color: #ffffff;
+}
+
+/* --- Main Layout Components --- */
+.navbar {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.main-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1e5abc; /* A slightly darker blue */
+    border-color: #1e5abc;
+}
+
+/* --- Forms --- */
+.form-container {
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* --- Map --- */
+#map {
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.binding-option {
+    border: 2px solid #e9ecef;
+    border-radius: .5rem;
+    padding: .75rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    display: block; /* Makes the whole label a block */
+}
+
+.binding-option:hover {
+    border-color: #ced4da;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.binding-option img {
+    max-height: 80px;
+    margin-bottom: .5rem;
+    border-radius: .25rem;
+}
+
+.binding-option .price {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Style for the selected card */
+input[name="bindingType"]:checked + .binding-option {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 111, 219, 0.2);
+    transform: translateY(-2px);
+}
+/* --- Base & Typography --- */
+body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; margin: 0; }
+h1, h2, h3 { color: #0d2c54; }
+
+/* --- Theme Colors --- */
+:root { --primary-color: #2a6fdb; --secondary-color: #0d2c54; --accent-color: #e9ecef; --text-color: #343a40; --white-color: #ffffff; }
+
+/* --- Main Layout Components --- */
+.navbar { background-color: var(--white-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.navbar-brand img { max-height: 40px; }
+.main-content { padding-top: 2rem; padding-bottom: 2rem; }
+.footer { background-color: var(--secondary-color); color: var(--white-color); padding: 2rem 0; text-align: center; }
+
+/* --- Forms & Cards --- */
+.form-container { background-color: var(--white-color); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+/* ADD THESE STYLES FOR THE SHOP CARDS */
+
+.shop-card .price { 
+    font-size: 1.5rem; 
+    font-weight: 600; 
+    color: var(--primary-color); 
+}
+
+.shop-card .card-img-top { 
+    height: 180px; 
+    object-fit: cover; 
+}
+
+/* --- E-commerce Style Binding Options --- */
+.binding-option { border: 2px solid #e9ecef; border-radius: .5rem; padding: .75rem; text-align: center; cursor: pointer; transition: all 0.2s ease-in-out; position: relative; display: block; }
+.binding-option:hover { border-color: #ced4da; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+.binding-option img { max-height: 80px; margin-bottom: .5rem; border-radius: .25rem; }
+.binding-option .price { font-size: .9rem; font-weight: 600; color: var(--primary-color); }
+input[name="bindingType"]:checked + .binding-option { border-color: var(--primary-color); box-shadow: 0 4px 12px rgba(42, 111, 219, 0.2); transform: translateY(-2px); }
+
+/* --- Dashboard Specific Styles --- */
+.status-btn-group .btn { transition: all 0.2s ease-in-out; }
+
