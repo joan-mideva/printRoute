@@ -3,6 +3,11 @@
 require_once 'db_connect.php';
 session_start();
 
+// Force errors to be displayed for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+header('Content-Type: application/json');
+
 $response = ['success' => false, 'message' => 'An error occurred.'];
 
 if (!isset($_SESSION['loggedin']) || !isset($_SESSION['user_id'])) {
@@ -30,25 +35,26 @@ try {
     if (!$order) {
         throw new Exception("Order not found or you don't have permission to cancel it.");
     }
-    if ($order['status'] !== 'Pending') {
-        throw new Exception("This order cannot be cancelled as it is already being processed.");
+    // Trim the status to be safe
+    if (trim($order['status']) !== 'Pending') {
+        throw new Exception("This order cannot be cancelled as it is already being processed (Status: " . htmlspecialchars($order['status']) . ").");
     }
 
     // 2. Refund the deposit to the user's wallet
     $refund_amount = $order['deposit_amount'];
-    $stmt = $conn->prepare("UPDATE users SET wallet_balance = wallet_balance + ? WHERE user_id = ?");
-    $stmt->bind_param("di", $refund_amount, $user_id);
-    $stmt->execute();
+    $stmt_refund = $conn->prepare("UPDATE users SET wallet_balance = wallet_balance + ? WHERE user_id = ?");
+    $stmt_refund->bind_param("di", $refund_amount, $user_id);
+    $stmt_refund->execute();
 
     // 3. Update the order status to 'Cancelled'
-    $stmt = $conn->prepare("UPDATE orders SET status = 'Cancelled' WHERE order_id = ?");
-    $stmt->bind_param("i", $order_id);
-    $stmt->execute();
+    $stmt_cancel = $conn->prepare("UPDATE orders SET status = 'Cancelled' WHERE order_id = ?");
+    $stmt_cancel->bind_param("i", $order_id);
+    $stmt_cancel->execute();
 
     // If all queries succeed, commit the transaction
     $conn->commit();
     $response['success'] = true;
-    $response['message'] = 'Order cancelled and deposit refunded.';
+    $response['message'] = 'Order cancelled and deposit has been refunded to your wallet.';
 
 } catch (Exception $e) {
     // If any query fails, roll back all changes
@@ -57,6 +63,5 @@ try {
 }
 
 $conn->close();
-header('Content-Type: application/json');
 echo json_encode($response);
 ?>

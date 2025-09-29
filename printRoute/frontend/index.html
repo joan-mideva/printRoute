@@ -14,12 +14,12 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/images/logo.png" alt="printRoute Logo">
-                <img src="assets/images/name.jpg" alt="printRoute Name">
+                <img src="assets/images/logo.png" alt="printRoute Logo" style="height: 40px;">
+                <img src="assets/images/name.jpg" alt="printRoute Logo" style="height: 40px;">
+
             </a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#features">How It Works</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                     <li class="nav-item"><a class="btn btn-primary" href="register.html">Get Started</a></li>
                 </ul>
@@ -28,24 +28,74 @@
     </nav>
 
     <header class="py-5">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-3">Skip the queue. <br>Print documents on the go.</h1>
-                    <p class="lead text-muted mb-4">Find local print shops, upload your PDF, choose your options, and collect when it's ready. Printing has never been this easy.</p>
-                    <div class="d-grid gap-3 d-sm-flex">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="register.html">Start Your First Order</a>
-                        <a class="btn btn-outline-secondary btn-lg px-4" href="#features">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <img src="assets/images/printroute.jpg" class="img-fluid" alt="Illustration of person sending a file to a printer">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-3">Skip the queue. <br>Print documents on the go.</h1>
+                <p class="lead text-muted mb-4">Find local print shops, upload your PDF, choose your options, and collect when it's ready. Printing has never been this easy.</p>
+                <div class="d-grid gap-3 d-sm-flex">
+                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="register.html">Start Your First Order</a>
+                    <a class="btn btn-outline-secondary btn-lg px-4" href="#features">Learn More</a>
                 </div>
             </div>
-        </div>
-    </header>
+            <div class="col-lg-6">
+                <div id="heroCarousel" class="carousel slide shadow-lg rounded" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
+                    </div>
+                    <div class="carousel-inner rounded">
+                        <div class="carousel-item active">
+                            <img src="assets/images/1.png" class="d-block w-100" alt="A person uploading a document from their laptop">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Tired of the stress?</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/2.png" class="d-block w-100" alt="Various finished print products like reports and documents">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Fed up of Waiting?</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/3.png" class="d-block w-100" alt="A modern, friendly printing shop">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>No customers on your shop?</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/4.png" class="d-block w-100" alt="A customer collecting their finished prints">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>There's a better way.</h5>
 
-    <section id="features" class="py-5 bg-light">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/5.png" class="d-block w-100" alt="A frustrated customer waiting in a long queue at a print shop">
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                                <h5>Use printRoute to make life easier.</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                </div>
+        </div>
+    </div>
+</header>
+
+  <section id="features" class="py-5 bg-light">
         <div class="container px-5">
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5">
@@ -67,50 +117,87 @@
         </div>
     </section>
 
+    <section id="features" class="py-5 bg-light"></section>
+
     <section class="py-5">
         <div class="container px-5">
             <h2 class="text-center mb-5">Featured Shops Near You</h2>
-            <div class="row gx-5">
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="assets/images/shop.png" alt="Photo of a print shop">
-                        <div class="card-body p-4">
-                            <div class="badge bg-success bg-gradient rounded-pill mb-2">Idle</div>
-                            <h5 class="card-title mb-3">Sonal Xerox</h5>
-                            <p class="card-text mb-0">Specializes in fast, high-quality document printing and spiral binding.</p>
-                        </div>
-                    </div>
+            <div id="shopListContainer" class="row gx-5">
                 </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="assets/images/shop.png" alt="Photo of another print shop">
-                        <div class="card-body p-4">
-                            <div class="badge bg-warning bg-gradient rounded-pill mb-2">Busy</div>
-                            <h5 class="card-title mb-3">Janta Digital Studio</h5>
-                            <p class="card-text mb-0">Experts in color printing, large format, and hardbound thesis work.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="assets/images/shop.png" alt="Photo of a third print shop">
-                        <div class="card-body p-4">
-                            <div class="badge bg-danger bg-gradient rounded-pill mb-2">Closed</div>
-                            <h5 class="card-title mb-3">Krishna Print Hub</h5>
-                            <p class="card-text mb-0">Your go-to place for bulk printing and official documentation.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center mt-4">
+                <button id="showMoreBtn" class="btn btn-outline-primary" style="display: none;">Show More</button>
             </div>
         </div>
     </section>
-    
     <footer class="footer mt-auto py-5 bg-dark text-white">
         <div class="container text-center">
-            <span>&copy; 2025 printRoute. All Rights Reserved.</span>
+            <span>&copy; printRoute 2025 - made by Jenil Revaliya.</span>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let allShops = [];
+            const initialShopCount = 3;
+            const showMoreBtn = document.getElementById('showMoreBtn');
+            const container = document.getElementById('shopListContainer');
+
+            // Fetch all shops from the backend when the page loads
+            async function loadShops() {
+                try {
+                    const response = await fetch('../backend/get_shops.php');
+                    const data = await response.json();
+                    if (data.success && data.shops.length > 0) {
+                        allShops = data.shops;
+                        renderShops(initialShopCount); // Render the first 3 shops
+                    } else {
+                        container.innerHTML = '<p class="text-center">No shops available at the moment.</p>';
+                    }
+                } catch (error) {
+                    console.error("Failed to load shops:", error);
+                    container.innerHTML = '<p class="text-center text-danger">Could not load shops.</p>';
+                }
+            }
+
+            // Renders a specific number of shops to the page
+            function renderShops(count) {
+                container.innerHTML = ''; // Clear existing shops
+                const shopsToRender = allShops.slice(0, count);
+
+                shopsToRender.forEach(shop => {
+                    const statusBadge = `<div class="badge bg-${shop.status === 'Idle' ? 'success' : (shop.status === 'Busy' ? 'warning' : 'danger')} bg-gradient rounded-pill mb-2">${shop.status}</div>`;
+                    const shopCardHTML = `
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <img class="card-img-top" src="${shop.image_path}" alt="Photo of ${shop.name}">
+                                <div class="card-body p-4">
+                                    ${statusBadge}
+                                    <h5 class="card-title mb-3">${shop.name}</h5>
+                                    <p class="card-text mb-0">${shop.address}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += shopCardHTML;
+                });
+
+                // Show or hide the "Show More" button
+                if (allShops.length > count) {
+                    showMoreBtn.style.display = 'inline-block';
+                } else {
+                    showMoreBtn.style.display = 'none';
+                }
+            }
+
+            // Event listener for the "Show More" button
+            showMoreBtn.addEventListener('click', function() {
+                renderShops(allShops.length); // Render all shops
+            });
+            
+            // Initial load
+            loadShops();
+        });
+    </script>
 </body>
 </html>

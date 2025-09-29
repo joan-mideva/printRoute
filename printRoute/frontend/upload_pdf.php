@@ -1,8 +1,16 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+      header("Location: login.php");
+     exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Create New Order - printRoute</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="stylesheet" href="assets/css/styles.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script></head>
 <body>
     <?php require_once 'nav_user.php'; // Include the new minimal navbar ?>
+
     <main class="container main-content">
         <div class="text-center mb-5"><h1>Create Your Print Order</h1></div>
         <div class="row g-5">
@@ -29,7 +37,7 @@
             </div>
         </div>
     </main>
-    <footer class="footer mt-5"><div class="container"><span>&copy; 2025 printRoute. All Rights Reserved.</span></div></footer>
+    <footer class="footer mt-5"><div class="container">printRoute 2025 - made by Jenil Revaliya.</div></footer>
 
 <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';

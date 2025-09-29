@@ -49,99 +49,101 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </main>
-    <footer class="footer mt-5"><div class="container text-center"><span>&copy; <?php echo date("Y"); ?> printRoute. All Rights Reserved.</span></div></footer>
+    
+    <footer class="footer mt-5"><div class="container text-center"><span>printRoute 2025 - made by Jenil Revaliya.</span></div></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            renderOrders();
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        renderOrders();
 
-            // Use event delegation to handle clicks on future cancel buttons
-            document.getElementById('activeOrdersTable').addEventListener('click', function(e) {
-                if (e.target && e.target.classList.contains('cancel-btn')) {
-                    const orderId = e.target.dataset.orderId;
-                    if (confirm(`Are you sure you want to cancel order #${orderId}? The deposit will be refunded.`)) {
-                        cancelOrder(orderId);
-                    }
+        // Use event delegation for cancel buttons
+        document.getElementById('activeOrdersTable').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('cancel-btn')) {
+                const orderId = e.target.dataset.orderId;
+                if (confirm(`Are you sure you want to cancel order #${orderId}? The deposit will be refunded.`)) {
+                    cancelOrder(orderId);
                 }
-            });
+            }
         });
+    });
 
-        async function cancelOrder(orderId) {
-            try {
-                const response = await fetch('../backend/cancel_order.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ order_id: orderId })
+    async function cancelOrder(orderId) {
+        try {
+            const response = await fetch('../backend/cancel_order.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ order_id: orderId })
+            });
+            const result = await response.json();
+            alert(result.message);
+            if (result.success) {
+                // Reload the page to show updated orders and wallet balance
+                window.location.reload();
+            }
+        } catch (error) {
+            alert('An error occurred. Please try again.');
+            console.error('Cancellation Error:', error);
+        }
+    }
+
+    async function renderOrders() {
+        const tableBody = document.getElementById('activeOrdersTable');
+        try {
+            const response = await fetch('../backend/get_user_orders.php');
+            const result = await response.json();
+            
+            tableBody.innerHTML = ''; // Clear loading message
+
+            if (result.success && result.orders.length > 0) {
+                result.orders.forEach(order => {
+                    let statusBadge, actionButton;
+
+                    // Trim status string to be safe
+                    const status = order.status ? order.status.trim() : '';
+
+                    switch(status) {
+                        case 'Pending':
+                            statusBadge = `<span class="badge bg-secondary">Pending</span>`;
+                            actionButton = `<button class="btn btn-sm btn-danger cancel-btn" data-order-id="${order.order_id}">Cancel</button>`;
+                            break;
+                        case 'Printing':
+                            statusBadge = `<span class="badge bg-warning text-dark">Printing</span>`;
+                            actionButton = `<button class="btn btn-sm btn-outline-secondary" disabled>Track</button>`;
+                            break;
+                        case 'Ready':
+                            statusBadge = `<span class="badge bg-info text-dark">Ready</span>`;
+                            actionButton = `<a href="#" class="btn btn-sm btn-primary">Get QR Code</a>`;
+                            break;
+                        case 'Completed':
+                            statusBadge = `<span class="badge bg-success">Completed</span>`;
+                            actionButton = `<a href="#" class="btn btn-sm btn-outline-info">Invoice</a>`;
+                            break;
+                        case 'Cancelled':
+                            statusBadge = `<span class="badge bg-light text-dark text-decoration-line-through">Cancelled</span>`;
+                            actionButton = ``; // No action
+                            break;
+                        default:
+                            statusBadge = `<span class="badge bg-light text-dark">${status}</span>`;
+                            actionButton = '';
+                    }
+                    
+                    const row = `
+                        <tr>
+                            <td>#${order.order_id}</td>
+                            <td>${order.shop_name}</td>
+                            <td>${statusBadge}</td>
+                            <td class="text-end">${actionButton}</td>
+                        </tr>`;
+                    tableBody.innerHTML += row;
                 });
-                const result = await response.json();
-                alert(result.message);
-                if (result.success) {
-                    // Reload the entire page to reflect updated orders and wallet balance
-                    window.location.reload();
-                }
-            } catch (error) {
-                alert('An error occurred. Please try again.');
-                console.error('Cancellation Error:', error);
+            } else {
+                tableBody.innerHTML = '<tr><td colspan="4" class="text-center">You have no active orders.</td></tr>';
             }
+        } catch (error) {
+            console.error("Failed to fetch orders:", error);
         }
-
-        async function renderOrders() {
-            const tableBody = document.getElementById('activeOrdersTable');
-            try {
-                const response = await fetch('../backend/get_user_orders.php');
-                const result = await response.json();
-                
-                tableBody.innerHTML = ''; // Clear loading message
-
-                if (result.success && result.orders.length > 0) {
-                    result.orders.forEach(order => {
-                        let statusBadge, actionButton;
-
-                        // Conditional logic for status and action buttons
-                        switch(order.status) {
-                            case 'Pending':
-                                statusBadge = `<span class="badge bg-secondary">Pending</span>`;
-                                actionButton = `<button class="btn btn-sm btn-danger cancel-btn" data-order-id="${order.order_id}">Cancel</button>`;
-                                break;
-                            case 'Printing':
-                                statusBadge = `<span class="badge bg-warning text-dark">Printing</span>`;
-                                actionButton = `<button class="btn btn-sm btn-outline-secondary" disabled>Track</button>`;
-                                break;
-                            case 'Ready':
-                                statusBadge = `<span class="badge bg-info text-dark">Ready</span>`;
-                                actionButton = `<a href="#" class="btn btn-sm btn-primary">Get QR Code</a>`;
-                                break;
-                            case 'Completed':
-                                statusBadge = `<span class="badge bg-success">Completed</span>`;
-                                actionButton = `<a href="#" class="btn btn-sm btn-outline-info">Invoice</a>`;
-                                break;
-                            case 'Cancelled':
-                                statusBadge = `<span class="badge bg-light text-dark text-decoration-line-through">Cancelled</span>`;
-                                actionButton = ``; // No action
-                                break;
-                            default:
-                                statusBadge = `<span class="badge bg-light text-dark">${order.status}</span>`;
-                                actionButton = '';
-                        }
-                        
-                        const row = `
-                            <tr>
-                                <td>#${order.order_id}</td>
-                                <td>${order.shop_name}</td>
-                                <td>${statusBadge}</td>
-                                <td class="text-end">${actionButton}</td>
-                            </tr>`;
-                        tableBody.innerHTML += row;
-                    });
-                } else {
-                    tableBody.innerHTML = '<tr><td colspan="4" class="text-center">You have no active orders.</td></tr>';
-                }
-            } catch (error) {
-                console.error("Failed to fetch orders:", error);
-                tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Could not load orders.</td></tr>';
-            }
-        }
-    </script>
+    }
+</script>
 </body>
 </html>
