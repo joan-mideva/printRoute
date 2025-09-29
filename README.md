@@ -1,4 +1,4 @@
-# ✨ printRoute ✨
+#  printRoute 🖨️🗺️
 
 Welcome to **printRoute**, a lightweight web platform designed to modernize the way users interact with local printing and Xerox shops. This project bridges the gap between customers and vendors, creating a seamless, queue-free printing experience.
 
